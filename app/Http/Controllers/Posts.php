@@ -8,6 +8,11 @@ use App\Post;
 class Posts extends Controller
 {
     public function index(Request $request) {
-        return Post::with('user', 'latestComment', 'commentCount')->get();
+        $posts = Post::with('user', 'latestComment', 'commentCount')->get();
+
+        return [
+          'totalCount' => 1,
+          'posts' => $posts,
+        ];
     }
 }

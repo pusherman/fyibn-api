@@ -3,9 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Post extends Model
 {
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->toATOMString();
+    }
+
     public function user()
     {
         return $this->belongsTo('App\User');
