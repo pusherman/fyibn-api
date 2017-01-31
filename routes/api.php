@@ -17,4 +17,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+
+    Route::get('/posts', 'Posts@index');
+    Route::get('/posts/{id}', 'Posts@view');
 });
