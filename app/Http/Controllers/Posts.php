@@ -10,9 +10,10 @@ class Posts extends Controller
     public function index(Request $request) {
         $posts = Post::with(
             'user',
+            'comments',
             'latestComment',
             'commentCount'
-        )->get();
+        )->paginate(25);
 
         return [
           'totalCount' => 1,
