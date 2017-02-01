@@ -16,13 +16,13 @@ class Posts extends Controller
         )->paginate(25);
 
         return [
-          'totalCount' => 1,
-          'posts' => $posts,
+            'totalCount' => 1,
+            'posts' => $posts,
         ];
     }
 
     public function view($id) {
-      return Post::with('comments')
-        ->findOrFail($id);
+        return Post::with('comments')
+            ->findOrFail($id);
     }
 }
