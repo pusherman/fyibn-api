@@ -14,13 +14,10 @@ use Illuminate\Http\Request;
 */
 
 Route::group(['middleware' => 'auth:api'], function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::get('/users/me', 'Users@me');
+    Route::post('/comments', 'Comments@create');
+    Route::post('/favorites', 'Favorites@create');
 });
-
 
 Route::get('/posts', 'Posts@index');
 Route::get('/posts/{id}', 'Posts@view');
-Route::post('/posts/{post_id}/comment', 'Comments@create');
-Route::post('/posts/{post_id}/favorite', 'Favorites@create');
