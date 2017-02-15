@@ -22,7 +22,9 @@ class Posts extends Controller
     }
 
     public function view($id) {
-        return Post::with('comments')
-            ->findOrFail($id);
+        return Post::with(
+            'comments',
+            'user'
+        )->findOrFail($id);
     }
 }
