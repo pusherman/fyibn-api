@@ -11,8 +11,6 @@ class Posts extends Controller
         $posts = Post::with(
             'user',
             'comments',
-            'latestComment',
-            'commentCount'
         )->paginate(25);
 
         return [
@@ -23,8 +21,8 @@ class Posts extends Controller
 
     public function view($id) {
         return Post::with(
-            'comments',
-            'user'
+            'user',
+            'comments'
         )->findOrFail($id);
     }
 }
