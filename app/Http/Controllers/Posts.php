@@ -10,11 +10,11 @@ class Posts extends Controller
     public function index(Request $request) {
         $posts = Post::with(
             'user',
-            'comments'
+            'comments',
+            'favorites'
         )->paginate(25);
 
         return [
-            'totalCount' => 1,
             'posts' => $posts,
         ];
     }
@@ -22,7 +22,8 @@ class Posts extends Controller
     public function view($id) {
         return Post::with(
             'user',
-            'comments'
+            'comments',
+            'favorites'
         )->findOrFail($id);
     }
 }
