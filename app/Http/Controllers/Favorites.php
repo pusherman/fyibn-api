@@ -21,8 +21,9 @@ class Favorites extends Controller
         $post_id = $request->get('post_id');
         $user_id = $request->user()->id;
 
-        $favorite_id = Favorite::findOrFail($post_id)
-          ->where('post_id', '=', $post_id)
+        $post = Post::findOrFail($post_id);
+
+        $favorite_id = Favorite::where('post_id', '=', $post)
           ->where('user_id', '=', $user_id)
           ->delete();
 
