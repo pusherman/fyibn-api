@@ -27,6 +27,11 @@ class Post extends Model
         return $this->hasMany('App\Favorite');
     }
 
+    public function history()
+    {
+        return $this->hasMany('App\History');
+    }
+
     public function latestComment()
     {
         return $this->hasOne('App\Comment')->latest();

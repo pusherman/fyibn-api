@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Favorite');
     }
+
+    public function history()
+    {
+        return $this->hasMany('App\History');
+    }
 }

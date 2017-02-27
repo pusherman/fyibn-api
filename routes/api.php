@@ -15,9 +15,14 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/users/me', 'Users@me');
+
     Route::post('/comments', 'Comments@create');
+
     Route::post('/favorites', 'Favorites@create');
     Route::delete('/favorites', 'Favorites@delete');
+
+    Route::post('/history', 'History@create');
+    Route::delete('/history', 'History@delete');
 });
 
 Route::get('/posts', 'Posts@index');
