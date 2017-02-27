@@ -23,7 +23,7 @@ class Favorites extends Controller
 
         $post = Post::findOrFail($post_id);
 
-        $favorite_id = Favorite::where('post_id', '=', $post)
+        $favorite_id = Favorite::where('post_id', '=', $post->id)
           ->where('user_id', '=', $user_id)
           ->delete();
 
