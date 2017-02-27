@@ -9,7 +9,7 @@ use App\Post;
 class Comments extends Controller
 {
     public function create(Request $request) {
-        return Post::findOrFail($request->get('postId'))
+        return Post::findOrFail($request->get('post_id'))
           ->comments()
           ->create([
             'body' => $request->get('body'),
