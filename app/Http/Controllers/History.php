@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
 
 class History extends Controller
 {
@@ -21,7 +22,7 @@ class History extends Controller
 
         $post = Post::findOrFail($post_id);
 
-        $id = History::where('post_id', '=', $post->id)
+        $id = App\History::where('post_id', '=', $post->id)
           ->where('user_id', '=', $user_id)
           ->delete();
 
