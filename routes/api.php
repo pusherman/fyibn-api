@@ -27,3 +27,5 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 Route::get('/posts', 'Posts@index');
 Route::get('/posts/{id}', 'Posts@view');
+
+Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
