@@ -7,7 +7,18 @@ use App\Post;
 
 class History extends Controller
 {
-    public function create(Request $request) {
+    /**
+     * Get all history records for our user
+     */
+    public function index(Request $request)
+    {
+      $user_id = $request->user()->id;
+      $history = \App\History::where('user_id', '=', $user_id)
+        ->get(['user_id', 'post_id', 'created_at']);
+
+      return [ 'history' => $history ];
+    }
+
         $post_id = $request->get('post_id');
         $user_id = $request->user()->id;
 

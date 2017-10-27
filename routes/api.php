@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::post('/history', 'History@create');
     Route::delete('/history', 'History@delete');
+    Route::get('/history', 'History@index');
 
     Route::get('/posts', 'Posts@index');
     Route::get('/posts/{id}', 'Posts@view');
