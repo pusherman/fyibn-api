@@ -19,21 +19,42 @@ class History extends Controller
       return [ 'history' => $history ];
     }
 
+    /**
+     * Create or update a history record
+     */
+    public function create(Request $request)
+    {
         $post_id = $request->get('post_id');
         $user_id = $request->user()->id;
 
-        return Post::findOrFail($post_id)
+        $history = Post::findOrFail($post_id)
           ->history()
-          ->create([ 'user_id' => $user_id ]);
+          ->first();
+
+        if (is_null($history))
+        {
+            return Post::findOrFail($post_id)
+              ->history()
+              ->create([ 'user_id' => $user_id ]);
+        }
+        else
+        {
+            $history->touch();
+            return $history;
+        }
     }
 
-    public function delete(Request $request) {
+    /**
+     * Delete a history record
+     */
+    public function delete(Request $request)
+    {
         $post_id = $request->get('post_id');
         $user_id = $request->user()->id;
 
         $post = Post::findOrFail($post_id);
 
-        $id = App\History::where('post_id', '=', $post->id)
+        $id = \App\History::where('post_id', '=', $post->id)
           ->where('user_id', '=', $user_id)
           ->delete();
 
