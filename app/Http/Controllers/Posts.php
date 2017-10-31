@@ -23,6 +23,7 @@ class Posts extends Controller
         return Post::with(
             'user',
             'comments',
+            'comments.user',
             'favorites'
         )->findOrFail($id);
     }
