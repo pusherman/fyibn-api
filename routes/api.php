@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'auth:api'], function () {
     Route::get('/users/me', 'Users@me');
+    Route::get('/users/{id}', 'Users@view');
 
     Route::post('/comments', 'Comments@create');
 
